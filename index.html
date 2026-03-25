@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JALG — Prospect Scoring Infographic</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0c10;
+    --surface: #12151c;
+    --surface-raised: #1a1e28;
+    --border: #252a36;
+    --text: #e8e6e3;
+    --text-muted: #8b8d94;
+    --text-dim: #5a5c63;
+    --accent: #52b788;
+    --lc: #3a9bdc;
+    --lc-bg: rgba(58,155,220,0.1);
+    --lc-glow: rgba(58,155,220,0.25);
+    --lm: #f0a030;
+    --lm-bg: rgba(240,160,48,0.1);
+    --lm-glow: rgba(240,160,48,0.25);
+    --fg: #ef4444;
+    --fg-bg: rgba(239,68,68,0.1);
+    --fg-glow: rgba(239,68,68,0.25);
+    --dq: #6b7280;
+    --auto: #818cf8;
+    --human: #52b788;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .poster {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+
+  /* === HEADER === */
+  .poster-header {
+    text-align: center;
+    padding: 2rem 1rem 1.5rem;
+    border-bottom: 2px solid var(--accent);
+    margin-bottom: 2rem;
+  }
+  .poster-header h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    line-height: 1.1;
+    margin-bottom: 0.3rem;
+  }
+  .poster-header h1 span { color: var(--accent); }
+  .poster-header .tagline {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  /* === PACKAGE STRIP === */
+  .pkg-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+  .pkg-box {
+    border-radius: 10px;
+    padding: 1.25rem;
+    text-align: center;
+    position: relative;
+  }
+  .pkg-box.lc { background: var(--lc-bg); border: 2px solid var(--lc-glow); }
+  .pkg-box.lm { background: var(--lm-bg); border: 2px solid var(--lm-glow); }
+  .pkg-box.fg { background: var(--fg-bg); border: 2px solid var(--fg-glow); }
+  .pkg-box .pkg-icon {
+    font-size: 2rem;
+    margin-bottom: 0.3rem;
+    line-height: 1;
+  }
+  .pkg-box h2 {
+    font-size: 1.1rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.15rem;
+  }
+  .pkg-box.lc h2 { color: var(--lc); }
+  .pkg-box.lm h2 { color: var(--lm); }
+  .pkg-box.fg h2 { color: var(--fg); }
+  .pkg-box .pkg-price {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--text-dim);
+    margin-bottom: 0.5rem;
+  }
+  .pkg-box .pkg-one-liner {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+  .pkg-box .pkg-one-liner strong { color: var(--text); }
+
+  /* === FLOW SECTION === */
+  .flow-title {
+    text-align: center;
+    margin-bottom: 1.25rem;
+  }
+  .flow-title h3 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  .flow-title .source-badge {
+    display: inline-block;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 0.2rem 0.6rem;
+    border-radius: 3px;
+    margin-top: 0.3rem;
+  }
+  .flow-title .source-badge.auto { background: rgba(129,140,248,0.15); color: var(--auto); border: 1px solid rgba(129,140,248,0.3); }
+  .flow-title .source-badge.human { background: rgba(82,183,136,0.15); color: var(--human); border: 1px solid rgba(82,183,136,0.3); }
+
+  /* === SIGNAL ROWS === */
+  .signal-flow {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: 0;
+    margin-bottom: 1.5rem;
+    align-items: stretch;
+  }
+  .signal-col {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem;
+  }
+  .signal-col.lc-col { border-top: 3px solid var(--lc); }
+  .signal-col.lm-col { border-top: 3px solid var(--lm); }
+  .signal-col.fg-col { border-top: 3px solid var(--fg); }
+
+  .signal-col .col-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .signal-col.lc-col .col-label { color: var(--lc); }
+  .signal-col.lm-col .col-label { color: var(--lm); }
+  .signal-col.fg-col .col-label { color: var(--fg); }
+
+  .sig {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+    padding: 0.35rem 0;
+    border-bottom: 1px solid rgba(37,42,54,0.5);
+  }
+  .sig:last-child { border-bottom: none; }
+  .sig strong { color: var(--text); font-weight: 600; font-size: 0.74rem; }
+
+  .arrow-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.3rem;
+    color: var(--text-dim);
+    font-size: 1.2rem;
+  }
+
+  /* === CATEGORY ROW LABEL === */
+  .cat-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    text-align: center;
+    margin: 1.5rem 0 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .cat-label::before, .cat-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* === DQ STRIP === */
+  .dq-strip {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.5rem;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.75rem;
+    align-items: start;
+  }
+  .dq-icon {
+    background: rgba(107,114,128,0.15);
+    color: var(--dq);
+    font-size: 1.5rem;
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(107,114,128,0.3);
+  }
+  .dq-content h4 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--dq);
+    letter-spacing: 0.05em;
+    margin-bottom: 0.3rem;
+  }
+  .dq-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .dq-tag {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    background: rgba(107,114,128,0.1);
+    border: 1px solid rgba(107,114,128,0.2);
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+  }
+
+  /* === SECRET SHOPPER === */
+  .shopper-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.6rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .shopper-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem;
+    border-top: 3px solid var(--human);
+  }
+  .shopper-card .step-num {
+    font-family: 'Space Mono', monospace;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--human);
+    line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+  .shopper-card h4 {
+    font-size: 0.78rem;
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+    line-height: 1.3;
+  }
+  .shopper-card .time {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    color: var(--human);
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .shopper-item {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    padding: 0.25rem 0;
+    padding-left: 0.85rem;
+    position: relative;
+  }
+  .shopper-item::before {
+    content: '□';
+    position: absolute;
+    left: 0;
+    color: var(--text-dim);
+    font-size: 0.6rem;
+  }
+
+  /* === LOOM RULES === */
+  .rules-strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+  .rule-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem;
+    text-align: center;
+  }
+  .rule-card .rule-icon {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+    line-height: 1;
+  }
+  .rule-card h4 {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-bottom: 0.3rem;
+    line-height: 1.3;
+  }
+  .rule-card p {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+  }
+
+  /* === TALK TRACKS === */
+  .tracks {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.6rem;
+    margin: 1rem 0;
+  }
+  .track-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.85rem;
+  }
+  .track-card.lc { border-top: 3px solid var(--lc); }
+  .track-card.lm { border-top: 3px solid var(--lm); }
+  .track-card.fg { border-top: 3px solid var(--fg); }
+  .track-card .track-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.55rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+  .track-card.lc .track-label { color: var(--lc); }
+  .track-card.lm .track-label { color: var(--lm); }
+  .track-card.fg .track-label { color: var(--fg); }
+  .track-card h4 {
+    font-size: 0.75rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+  .track-step {
+    font-size: 0.65rem;
+    color: var(--text-muted);
+    line-height: 1.4;
+    padding: 0.2rem 0;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--border);
+    margin-bottom: 0.25rem;
+  }
+  .track-step em { color: var(--text); font-style: normal; font-weight: 600; }
+
+  /* === FOOTER === */
+  .poster-footer {
+    text-align: center;
+    padding: 1.25rem 0 0.5rem;
+    border-top: 2px solid var(--accent);
+    margin-top: 1.5rem;
+  }
+  .poster-footer p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+  }
+
+  @media (max-width: 900px) {
+    .pkg-strip { grid-template-columns: 1fr; }
+    .signal-flow { grid-template-columns: 1fr; }
+    .arrow-col { transform: rotate(90deg); padding: 0.3rem 0; }
+    .shopper-grid { grid-template-columns: 1fr 1fr; }
+    .rules-strip { grid-template-columns: 1fr 1fr; }
+    .tracks { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+
+  <!-- HEADER -->
+  <div class="poster-header">
+    <h1>Prospect <span>→</span> Package <span>Match</span></h1>
+    <div class="tagline">How to read a business, match the pain, and pitch the right JALG package</div>
+  </div>
+
+  <!-- PACKAGE STRIP -->
+  <div class="pkg-strip">
+    <div class="pkg-box lc">
+      <div class="pkg-icon">🎯</div>
+      <h2>Lead Capture</h2>
+      <div class="pkg-price">$1,500 + $87/mo</div>
+      <div class="pkg-one-liner"><strong>Good foundation, no automation.</strong> They answer sometimes but have no speed-to-lead or missed call text-back. Just need the basics.</div>
+    </div>
+    <div class="pkg-box lm">
+      <div class="pkg-icon">⚡</div>
+      <h2>Lead Machine</h2>
+      <div class="pkg-price">$2,800 + $147/mo</div>
+      <div class="pkg-one-liner"><strong>Gaps in capture AND nurture.</strong> No follow-up sequences, weak review generation, mediocre web presence. Default pick when in doubt.</div>
+    </div>
+    <div class="pkg-box fg">
+      <div class="pkg-icon">🔥</div>
+      <h2>Full Growth</h2>
+      <div class="pkg-price">$4,200 + $197/mo</div>
+      <div class="pkg-one-liner"><strong>Hurting across the board.</strong> Bad site, weak reviews, no booking, no automation, past customers untouched. Max pain = max opportunity.</div>
+    </div>
+  </div>
+
+  <!-- AUTOMATED SIGNALS -->
+  <div class="cat-label">Automated Signals — What the Scorer Checks</div>
+
+  <div class="signal-flow">
+    <div class="signal-col lc-col">
+      <div class="col-label">→ Lead Capture</div>
+      <div class="sig"><strong>Web Score 0-12</strong> — Site works, looks okay, missing a few features</div>
+      <div class="sig"><strong>Booking Score 0-5</strong> — Has some booking, even if clunky</div>
+      <div class="sig"><strong>100+ reviews</strong> — Strong reputation, just needs automation</div>
+      <div class="sig"><strong>4.5+ rating</strong> — Customers love them, they just leak leads</div>
+    </div>
+    <div class="arrow-col">→</div>
+    <div class="signal-col lm-col">
+      <div class="col-label">→ Lead Machine</div>
+      <div class="sig"><strong>Web Score 10-20</strong> — Outdated, generic template, not impressive</div>
+      <div class="sig"><strong>Booking Score 10</strong> — Contact form only, no real scheduling</div>
+      <div class="sig"><strong>30-100 reviews</strong> — Decent but competitors have 2-3x more</div>
+      <div class="sig"><strong>4.0-4.5 rating</strong> — Room for improvement, negatives dragging down</div>
+    </div>
+    <div class="arrow-col">→</div>
+    <div class="signal-col fg-col">
+      <div class="col-label">→ Full Growth</div>
+      <div class="sig"><strong>Web Score 20-25</strong> — No site, broken, or completely blank</div>
+      <div class="sig"><strong>Booking Score 15</strong> — Phone number only, zero digital capture</div>
+      <div class="sig"><strong>Under 30 reviews</strong> — Looks unproven even if they've been around years</div>
+      <div class="sig"><strong>Below 4.0 rating</strong> — Reputation damage, need review dilution urgently</div>
+    </div>
+  </div>
+
+  <!-- DQ STRIP -->
+  <div class="dq-strip">
+    <div class="dq-icon">✕</div>
+    <div class="dq-content">
+      <h4>Auto-Disqualified — Skip These</h4>
+      <div class="dq-tags">
+        <span class="dq-tag">National franchise (Terminix, Stanley Steemer, etc.)</span>
+        <span class="dq-tag">Not home services (auto repair, retail, medical)</span>
+        <span class="dq-tag">Already fully optimized (booking + chat + 500+ reviews)</span>
+        <span class="dq-tag">Appears permanently closed</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- HUMAN SIGNALS -->
+  <div class="cat-label">Human-Eye Signals — What You Check Before the Loom</div>
+
+  <div class="signal-flow">
+    <div class="signal-col lc-col">
+      <div class="col-label">→ Lead Capture</div>
+      <div class="sig"><strong>GBP claimed, active, no posts</strong> — Set up but unused</div>
+      <div class="sig"><strong>No click-to-call on mobile</strong> — Easy fix they don't know about</div>
+      <div class="sig"><strong>Answers phone, no follow-up text</strong> — Responsive but not automated</div>
+      <div class="sig"><strong>Top 5 in maps, competitors have booking</strong> — One step behind</div>
+    </div>
+    <div class="arrow-col">→</div>
+    <div class="signal-col lm-col">
+      <div class="col-label">→ Lead Machine</div>
+      <div class="sig"><strong>Few photos, no posts, stale GBP</strong> — Profile looks abandoned</div>
+      <div class="sig"><strong>Negative reviews unanswered</strong> — Reputation unmanaged</div>
+      <div class="sig"><strong>Slow site (3+ sec load)</strong> — Google penalizes, visitors bounce</div>
+      <div class="sig"><strong>Voicemail, calls back in 1-2 hrs</strong> — Trying but too slow</div>
+    </div>
+    <div class="arrow-col">→</div>
+    <div class="signal-col fg-col">
+      <div class="col-label">→ Full Growth</div>
+      <div class="sig"><strong>GBP unclaimed or wrong info</strong> — Customers sent to wrong place</div>
+      <div class="sig"><strong>Site broken on mobile</strong> — Invisible to 60%+ of searchers</div>
+      <div class="sig"><strong>Stock photos only, no real work</strong> — Looks fake or generic</div>
+      <div class="sig"><strong>No answer, no callback in 24 hrs</strong> — Leads dying on the vine</div>
+    </div>
+  </div>
+
+  <!-- CONFLICT RULE -->
+  <div class="dq-strip" style="border-left:3px solid var(--lm); border-top:none;">
+    <div class="dq-icon" style="background:rgba(240,160,48,0.15);color:var(--lm);border-color:var(--lm-glow);">⚖</div>
+    <div class="dq-content">
+      <h4 style="color:var(--lm);">When Signals Conflict → Go Higher</h4>
+      <div style="font-size:0.72rem;color:var(--text-muted);line-height:1.5;">If a business has 200 reviews but a broken website, they're Full Growth — not Lead Capture. The weakest link determines the package. When in doubt between two tiers, always recommend the higher one.</div>
+    </div>
+  </div>
+
+  <!-- SECRET SHOPPER CHECKLIST -->
+  <div class="cat-label">Secret Shopper Checklist — 5 Min Before Every Loom</div>
+
+  <div class="shopper-grid">
+    <div class="shopper-card">
+      <div class="step-num">01</div>
+      <h4>Google Search</h4>
+      <div class="time">2 MIN</div>
+      <div class="shopper-item">Search "[service] [area]" — note their map pack position</div>
+      <div class="shopper-item">Search their business name — is GBP info correct?</div>
+      <div class="shopper-item">Count reviews vs top 3 competitors — write down numbers</div>
+    </div>
+    <div class="shopper-card">
+      <div class="step-num">02</div>
+      <h4>GBP Deep Check</h4>
+      <div class="time">1 MIN</div>
+      <div class="shopper-item">Photo count — under 10 = weak</div>
+      <div class="shopper-item">Last GBP post — 3+ months ago = stale</div>
+      <div class="shopper-item">Read recent 1-star reviews — owner responding?</div>
+      <div class="shopper-item">Services, description, service area filled?</div>
+    </div>
+    <div class="shopper-card">
+      <div class="step-num">03</div>
+      <h4>Website Walk</h4>
+      <div class="time">1 MIN</div>
+      <div class="shopper-item">Open on mobile — does it load fast and look right?</div>
+      <div class="shopper-item">Can you book or request a quote in 10 seconds?</div>
+      <div class="shopper-item">Any reviews/testimonials displayed on site?</div>
+      <div class="shopper-item">Chat widget or text option?</div>
+    </div>
+    <div class="shopper-card">
+      <div class="step-num">04</div>
+      <h4>The Call Test</h4>
+      <div class="time">2 MIN</div>
+      <div class="shopper-item">Call with *67 — answered? How many rings?</div>
+      <div class="shopper-item">If voicemail — start timer, wait for callback/text</div>
+      <div class="shopper-item">Try submitting contact form — any confirmation?</div>
+      <div class="shopper-item">Note response time — this is your #1 Loom talking point</div>
+    </div>
+  </div>
+
+  <!-- LOOM RULES -->
+  <div class="cat-label">Loom Recording Rules</div>
+
+  <div class="rules-strip">
+    <div class="rule-card">
+      <div class="rule-icon">🎬</div>
+      <h4>3 Tabs Open</h4>
+      <p>Google search results, their GBP listing, their website. Screen share + face cam on. Nothing else visible.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">⏱</div>
+      <h4>Under 4 Min</h4>
+      <p>Lead with biggest pain in first 30 seconds. Walk through evidence. Close with clear next step. Don't ramble.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">🚫</div>
+      <h4>No Package Names</h4>
+      <p>Never say "Lead Machine" or prices. Describe the solution. Pricing comes up on the sales call, not in the Loom.</p>
+    </div>
+    <div class="rule-card">
+      <div class="rule-icon">📤</div>
+      <h4>Send Immediately</h4>
+      <p>FB DM the Loom link the moment you finish recording. Don't batch. Speed wins. One video, one send, next prospect.</p>
+    </div>
+  </div>
+
+  <!-- TALK TRACKS -->
+  <div class="cat-label">Talk Tracks — What to Say in Each Loom</div>
+
+  <div class="tracks">
+    <div class="track-card lc">
+      <div class="track-label">Lead Capture Pitch</div>
+      <h4>"Great work — you just need to catch the leads you're missing"</h4>
+      <div class="track-step"><em>Open:</em> "Your reviews are solid and your reputation speaks for itself. But when I tried to reach you..."</div>
+      <div class="track-step"><em>Pain:</em> "I called, got voicemail, nothing happened. If your competitor texts back in 60 seconds, I'm going with them."</div>
+      <div class="track-step"><em>Fix:</em> "I'd build a system where missed calls and form submissions get instant text-backs automatically."</div>
+      <div class="track-step"><em>Close:</em> "Would you be open to 15 minutes to see if it makes sense for your business?"</div>
+    </div>
+    <div class="track-card lm">
+      <div class="track-label">Lead Machine Pitch</div>
+      <h4>"You're losing leads at two points — first touch and follow-up"</h4>
+      <div class="track-step"><em>Open:</em> "I searched [service] near [area] and found you. You've got [X] reviews — but your competitor has [Y]."</div>
+      <div class="track-step"><em>Pain 1:</em> "Contact form but no real booking. Customers submit and wait. Some call your competitor instead."</div>
+      <div class="track-step"><em>Pain 2:</em> "Last review was [X] ago. Without a system asking every customer, that gap grows every month."</div>
+      <div class="track-step"><em>Close:</em> "I build this specifically for home service businesses in NoVA. Free to chat this week?"</div>
+    </div>
+    <div class="track-card fg">
+      <div class="track-label">Full Growth Pitch</div>
+      <h4>"Your work is great but your online presence doesn't match"</h4>
+      <div class="track-step"><em>Open:</em> "I searched [service] in your area and it took me a while to find you. Your competitors show up first."</div>
+      <div class="track-step"><em>Pain 1:</em> "Your website [is outdated / broken on mobile / has no booking]. Customers can't book in 30 seconds, they leave."</div>
+      <div class="track-step"><em>Pain 2:</em> "You have [X] reviews. Top 3 competitors have [Y, Z, W]. Google ranks them higher."</div>
+      <div class="track-step"><em>Close:</em> "I'd love to show you what a full system would look like. 15 minutes this week?"</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="poster-footer">
+    <p>JALG Internal &nbsp;·&nbsp; Prospect → Package Matching Guide &nbsp;·&nbsp; March 2026 &nbsp;·&nbsp; Not for external use</p>
+  </div>
+
+</div>
+</body>
+</html>
